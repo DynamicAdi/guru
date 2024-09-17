@@ -11,7 +11,7 @@ function RenderAllComponents({backend}) {
   return (
     <>
     <Navbar />
-    <Render />
+    <Render backend={backend}/>
     <About />
     <PopularItems backend={backend} />
     <Testmonials />

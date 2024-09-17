@@ -7,13 +7,14 @@ import PosCard from "./pos-card";
 import axios from "axios";
 import DetailsCard from "../corporate/DetailsCard";
 import Loader from "../../global/loader/loader";
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 function Menu({ backend }) {
   const { myArray } = useArray();
+  const { choose } = useParams();
   const [active, setActive] = useState(false);
   const [catogery, setCatogery] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(choose || "");
   const [menuItems, setMenuItems] = useState([]);
   const [FoodPrefrence, setFoodPrefrence] = useState('both');
   const [nextData, setnextData] = useState([]);
@@ -91,7 +92,7 @@ function Menu({ backend }) {
             <div className="context">
               <p>Categories</p>
               <select className="tag" onChange={(e) => handleCategoryChange(e)}>
-                <option value="">All Categories</option>
+                <option value="">{choose ? choose : "All Categories"}</option>
                 {catogery.length > 0 &&
                   catogery &&
                   catogery.map((name, index) => (

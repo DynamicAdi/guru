@@ -23,6 +23,11 @@ createRoot(document.getElementById("root")).render(
         <Routes>
           <Route errorElement={<ErrorPage />} path="/" element={<App backend={URL} />} />
           <Route path="/menu" element={<Menu backend={URL} />} errorElement={<ErrorPage />} />
+          <Route
+            path="/menu/:choose"
+            element={<Menu backend={URL} />}
+            errorElement={<ErrorPage />}
+          />
           <Route path="/checkout" element={<Checkout backend={URL} />} errorElement={<ErrorPage />} />
           <Route
             path="/corporate"

@@ -13,52 +13,15 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Selection from "./Selection";
 
 
-function Render() {
+function Render({backend}) {
   const {scrollYProgress} = useScroll();
 
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.5], [1, 140, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.17], [1, 0]);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    autoplay: true,
-    speed: 1000,
-    pauseOnHover: true,
-    autoplaySpeed: 2000,
-    lazyLoad: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  }
   return (
     <>
       <div className="render">
@@ -121,20 +84,7 @@ function Render() {
       </div>
       <div className="area">
       <div className="gradient"></div>
-      <motion.div 
-      initial={{opacity: 0}}
-      whileInView={{opacity: 1}}
-      transition={{duration: 0.6, delay: 1.5}}
-className="catogery">
-    <Slider {...settings} arrows={false}>
-      <FilledCard />
-      <FilledCard />
-      <FilledCard />
-      <FilledCard />
-    </Slider>
-
-
-      </motion.div>
+      <Selection backend={backend}/>
       <Canvas>
       <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={[10.964, 5.96, 0.47]} rotation={[-1.395, 1.337, 1.402]} />
       <Model />

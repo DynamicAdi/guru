@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import logo from "/logo.png";
-import { AnimatePresence, motion } from "framer-motion";
+// import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { BiMenuAltRight } from "react-icons/bi";
@@ -62,7 +62,7 @@ function Navbar() {
       </div>
 
       <div className="links">
-        <motion.ul
+        <ul
           variants={container}
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -75,7 +75,7 @@ function Navbar() {
               key={i}
               style={{ color: "black", textDecoration: "none" }}
             >
-              <motion.li
+              <li
                 variants={item}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
@@ -87,26 +87,26 @@ function Navbar() {
                 {/* <Link to={{ pathname: tab.to, search: new URLSearchParams(tab.query).toString() }} style={{ color: "black" }}> */}
                 {tab.name}
                 {/* </Link> */}
-              </motion.li>
+              </li>
             </Link>
           ))}
-        </motion.ul>
+        </ul>
       </div>
       <Link to="/corporate">
         <button className="btns">Corporate Box</button>
       </Link>
-      <AnimatePresence key={tabs.length}>
+      {/* <AnimatePresence key={tabs.length}> */}
         {isAnimating && (
           <>
             <div className={`links responsive ${open ? "visible" : ""}`}>
-              <motion.div
+              <div
                 className="nav-menu-icon"
                 variants={item}
                 onClick={() => setOpen(!open)}
               >
                 {open ? <IoClose size={35} /> : <BiMenuAltRight size={35} />}
-              </motion.div>
-              <motion.ul
+              </div>
+              <ul
                 initial={{ y: -100, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 exit={{ y: -100, opacity: 0 }}
@@ -120,7 +120,7 @@ function Navbar() {
                   key={i}
                   style={{ color: "black", textDecoration: "none" }}
                 >
-                  <motion.li
+                  <li
                     // variants={item}
                     initial={{ y: -100 }}
                     whileInView={{ y: 0 }}
@@ -134,7 +134,7 @@ function Navbar() {
                     {/* <Link to={{ pathname: tab.to, search: new URLSearchParams(tab.query).toString() }} style={{ color: "black" }}> */}
                     {tab.name}
                     {/* </Link> */}
-                  </motion.li>
+                  </li>
                     </Link>
                 ))}
                 <Link to="/corporate">
@@ -142,11 +142,11 @@ function Navbar() {
                     Corporate Box
                   </button>
                 </Link>
-              </motion.ul>
+              </ul>
             </div>
           </>
         )}
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
     </div>
   );
 }

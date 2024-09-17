@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { IoArrowForwardOutline } from "react-icons/io5";
 import "./filledCard.scss";
+import { Link } from 'react-router-dom';
 
-function FilledCard({id, image, title, desc, veg}) {
+function FilledCard({image, title, to}) {
   return (
     <div className="menuCard">
         <div className="image">
-            <img src="https://picsum.photos/200" alt="" />
+            <img src={image} alt={title} />
         </div>
      <div className="content">
-        <h1>Title of projects</h1>
+        <h1>{title}</h1>
+      <Link to={to}>
         <button className="btn">
           Explore <IoArrowForwardOutline className='icon'/>
     </button>
+      </Link>
     </div>
     </div>
   )
