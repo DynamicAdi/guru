@@ -5,11 +5,11 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Checkout() {
+function Checkout({backend}) {
   const location = useLocation();
   const navigate = useNavigate();
   const { items, prefrence } = location.state || [];
-  const backend = 'http://localhost:8080';
+  // const backend = 'http://localhost:8080';
   const functionTabs = [
     "Wedding",
     "Anniversary",

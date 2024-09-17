@@ -6,7 +6,7 @@ function TestmonialsCard({ index }) {
   return (
     <div className={`TestmonialsCard ${index % 2 === 0 ? "yellow" : ""}`}>
       <div className="upper">
-        <div className="img">
+        <div className="avatar">
           <img src="https://picsum.photos/200" alt="" />
         </div>
         <div className="textTestmonials">

@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import './styles.scss'
 import axios from 'axios';
 
-function Form() {
-    const backend = 'http://localhost:8080';
-    
+function Form({backend}) {
   const [corporate, setCorporate] = useState({
     name: '',
     description: '', 

@@ -10,8 +10,8 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../../global/loader/loader';
 
-function ViewAllItems() {
-  const backend = 'http://localhost:8080'
+function ViewAllItems({backend}) {
+  // const backend = 'http://localhost:8080'
   const location = useLocation();
     const {id} = location.state;
 

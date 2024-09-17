@@ -14,15 +14,13 @@ import { GoListUnordered } from "react-icons/go";
 import { GiHotMeal } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
-function Dashboard({logout}) {
-  const backend = "http://localhost:8080";
+function Dashboard({logout, backend}) {
+  // const backend = "http://localhost:8080";
   const tabs = [
     { title: "Admins", icon: RiAdminLine },
     { title: "Foods", icon: IoFastFoodOutline },
     { title: "Orders", icon: GoListUnordered },
     { title: "Corporate", icon: GiHotMeal },
-    { title: "Popular", icon: GiHotMeal },
-
   ];
   const [activeTab, setActiveTab] = useState(tabs[2].title);
   const { data = [], isLoading, error, reFetch } = readData(backend, activeTab);

@@ -1,5 +1,4 @@
-import React, {Suspense, lazy} from "react"
-import Loader from "./global/loader/loader"
+import React, {lazy} from "react"
 
 const Navbar = lazy(() => import("./global/navbar"))
 const Render = lazy(() => import("./render/index"))
@@ -8,13 +7,13 @@ const PopularItems = lazy(() => import("./components/popularItems"))
 const Testmonials = lazy(() => import("./components/testmonials"))
 const Footer = lazy(() => import("./global/footer"))
 
-function RenderAllComponents() {
+function RenderAllComponents({backend}) {
   return (
     <>
     <Navbar />
     <Render />
     <About />
-    <PopularItems />
+    <PopularItems backend={backend} />
     <Testmonials />
     <Footer />
     </>

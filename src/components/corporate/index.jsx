@@ -5,8 +5,8 @@ import CorporateCard from './card';
 import axios from 'axios';
 import Loader from '../../global/loader/loader';
 
-function Corporate() {
-  const backend = 'http://localhost:8080'
+function Corporate({backend}) {
+  // const backend = 'http://localhost:8080'
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false)
   const [FoodPrefrence, setFoodPrefrence] = useState('');

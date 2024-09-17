@@ -5,6 +5,8 @@ import LoginForm from "./LoginForm";
 
 function Admin({backend}) {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const [password, setPassword] = useState("");
   const [access, setAccess] = useState(
     localStorage.getItem("access") === "true"
@@ -19,22 +21,29 @@ function Admin({backend}) {
   }, []);
 
   const handleLogin = async () => {
-    const data = await axios.post(`${backend}/admins/login`, {
-      email: email,
-      password: password,
-    });
-
-    if (!data.data.success) {
-      setError(true);
-      return;
-    }
-
+     try {
+      setLoading(true);
+      const data = await axios.post(`${backend}/admins/login`, {
+        email: email,
+        password: password,
+      });
+      
+      if (!data.data.success) {
+        setError(true);
+        return;
+      }
+      
     if (data.data.success) {
       setAccess(true);
       localStorage.setItem("access", "true"); // Persist login state in localStorage
+      setLoading(false);
       return;
     }
-  };
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
 
   const handleLogout = () => {
     setAccess(false);
@@ -58,6 +67,7 @@ function Admin({backend}) {
           setPassword={setPassword}
           setError={setError}
           login={handleLogin}
+          loading={loading} // Show loading spinner while waiting for API response
         />
       )}
     </>

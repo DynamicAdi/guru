@@ -5,8 +5,9 @@ import "./styles.scss";
 import ColorCard from "./card";
 import Loader from "../../global/loader/loader";
 
-function PopularItems() {
-  const backend = 'http://localhost:8080';
+function PopularItems({backend}) {
+  console.log(backend);
+  
   const [currentCard, setCurrentCard] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Example breakpoint
   const [data, setData] = useState([]);
@@ -38,7 +39,7 @@ function PopularItems() {
     if (!isMobile) return;
 
     const interval = setInterval(() => {
-      setCurrentCard((prev) => (prev + 1) % cards.length);
+      setCurrentCard((prev) => (prev + 1) % data.length);
     }, 2000); // 2 seconds interval
 
     return () => clearInterval(interval);
@@ -60,10 +61,10 @@ function PopularItems() {
          style={{transform: `translateX(-${currentCard * 80}%)`}}
         >
           {loading ? (<Loader />) : (
-            data && 
-            data.
+            data.length > 0 && 
+            data?.
             slice(0, 5).map((card, index) => (
-              <ColorCard currentCard={currentCard} index={index} key={index} id={card._id} image={card.image} name={card.name} desc={card.description} isVeg={card.isVeg} />
+              <ColorCard currentCard={currentCard} index={index} key={index} id={card?._id} image={card?.image} name={card?.name} desc={card?.description} isVeg={card?.isVeg} />
             ) 
           ))}
 

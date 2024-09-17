@@ -2,7 +2,7 @@ import React from 'react'
 import "./login.scss";
 import guru from "/logo.png";
 
-function LoginForm({email, password, error, setEmail, setPassword, setError, login}) {
+function LoginForm({email, password, error, setEmail, setPassword, setError, login, loading}) {
   return (
     <div className="main">
     <div className="container">
@@ -49,7 +49,7 @@ function LoginForm({email, password, error, setEmail, setPassword, setError, log
         align="center"
         onClick={async () => await login()}
       >
-        Login
+        {loading ? "Loading" : "Login"}
       </a>
     </form>
   </div>

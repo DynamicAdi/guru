@@ -21,17 +21,17 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <ArrayProvider>
         <Routes>
-          <Route errorElement={<ErrorPage />} path="/" element={<App />} />
+          <Route errorElement={<ErrorPage />} path="/" element={<App backend={URL} />} />
           <Route path="/menu" element={<Menu backend={URL} />} errorElement={<ErrorPage />} />
           <Route path="/checkout" element={<Checkout backend={URL} />} errorElement={<ErrorPage />} />
           <Route
             path="/corporate"
-            element={<Corporate />}
+            element={<Corporate backend={URL} />}
             errorElement={<ErrorPage />}
           />
           <Route
             path="/corporate/items"
-            element={<ViewAllItems />}
+            element={<ViewAllItems backend={URL} />}
             errorElement={<ErrorPage />}
           />
           <Route

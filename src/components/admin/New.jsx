@@ -7,16 +7,18 @@ function Login({backend}) {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-
+    const [loading, setLoading] = useState(false);
     const handleCalls = async () => {
 
         if (password.length > 8 && email.length > 0) {
+          setLoading(true)
             await axios.post(`${backend}/admins/new`, {
                 name: name,
                 email: email,
                 password: password
             })
-            alert('Login Successful!')
+            setLoading(false);
+            alert('Admin created successfully!')
         }
        else if (password.length < 8) {
         alert('Password must be at least 8 characters')
@@ -38,7 +40,7 @@ function Login({backend}) {
     <input required className="un " type="email" align="center" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input required className="un" type="password" align="center" placeholder="Password *" value={password} onChange={(e) => setPassword(e.target.value)} />
       <p>password must contain 8 letters</p>
-      <a className="submit" align="center" onClick={() => handleCalls()}>Sign in</a>
+      <a className="submit" align="center" onClick={() => handleCalls()}>{loading ? "Loading..." : "Sign in"}</a>
     </form>     
     </div>
     </div>
