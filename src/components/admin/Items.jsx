@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./items.scss";
+import "./Items.scss";
 import DetailsCard from "../corporate/DetailsCard";
 import { CiEdit, CiTrash } from "react-icons/ci";
 
