@@ -89,9 +89,9 @@ function Menu({ backend }) {
         ) : (
           <div className="tags">
             <div className="context">
-              <p>Catogeries</p>
+              <p>Categories</p>
               <select className="tag" onChange={(e) => handleCategoryChange(e)}>
-                <option value="">All catogeries</option>
+                <option value="">All Categories</option>
                 {catogery.length > 0 &&
                   catogery &&
                   catogery.map((name, index) => (

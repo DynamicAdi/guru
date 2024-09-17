@@ -5,7 +5,7 @@ import RenderAllComponents from "./Render"
 function App({backend}) {
   return (
     <Suspense fallback={<Loader />}>
-      <RenderAllComponents backend={URL} />
+      <RenderAllComponents backend={backend} />
     </Suspense>
   )
 }

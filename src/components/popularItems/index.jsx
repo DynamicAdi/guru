@@ -6,7 +6,8 @@ import ColorCard from "./card";
 import Loader from "../../global/loader/loader";
 
 function PopularItems({backend}) {
-  console.log(backend);
+  // console.log(backend);
+  // backend = 'http://localhost:8080'
   
   const [currentCard, setCurrentCard] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Example breakpoint
