@@ -4,7 +4,8 @@
 .menuCard {
     width: 20rem;
     height: 18rem;
-    background-color: #f1f1f1;
+    background-color: #f1f1f120;
+    backdrop-filter: blur(2px);
     border: 1px solid $grey;
     border-radius: 20px;
     position: relative;
@@ -50,15 +51,17 @@
         border-radius: 50px;
         outline: none;
         border: none;
-        background-color: white;
+        background-color: #ffffff40;
+        backdrop-filter: blur(6px);
         font-size: 1rem;
         @include flex(space-between, center);
         gap: 0.5rem;
         cursor: pointer;
         transition: 0.3s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
         .icon {
-            background-color: darken($color: $primary, $amount: 10%);
+            background-color: rgba($color: $primary, $alpha: 0.9);
             color: white;
+            backdrop-filter: blur(8px);
             border-radius: 50%;
             padding: 0.2rem;
             font-size: 1.8rem;

@@ -70,6 +70,7 @@ function Selection({backend}) {
     whileInView={{opacity: 1}}
     transition={{duration: 0.6, delay: 1.5}}
 className="catogery">
+  <h1><span>categories</span></h1>
     <Slider {...settings} arrows={false}>
       {categories.map((category, index) => (
         <FilledCard key={index} to={`/menu/${category.name}`} image={category.image} title={category.name} />

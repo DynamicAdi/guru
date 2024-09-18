@@ -10,7 +10,7 @@ function Login({backend}) {
     const [loading, setLoading] = useState(false);
     const handleCalls = async () => {
 
-        if (password.length > 8 && email.length > 0) {
+        if (password.length >= 8 && email.length > 0) {
           setLoading(true)
             await axios.post(`${backend}/admins/new`, {
                 name: name,

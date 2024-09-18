@@ -48,13 +48,16 @@
             @include flex(space-between, flex-start, column);
             padding-bottom: 2rem;
             cursor: default;
-            transition: 0.3s all cubic-bezier(0.23, 1, 0.320, 1);
+            transition: 0.3s all ease;
             &.yellow {
                 background-color: lighten($color: $primary, $amount: 25%);
             }
             &:hover {
                 background-color: $primary;
                 color: white;
+                cursor: pointer;
+                
+
                 
                 .upper {
                     .textTestmonials {

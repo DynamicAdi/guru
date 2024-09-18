@@ -8,6 +8,7 @@ function Admin({backend}) {
   const [loading, setLoading] = useState(false);
 
   const [password, setPassword] = useState("");
+
   const [access, setAccess] = useState(
     localStorage.getItem("access") === "true"
   );
@@ -24,12 +25,13 @@ function Admin({backend}) {
      try {
       setLoading(true);
       const data = await axios.post(`${backend}/admins/login`, {
-        email: email,
+        email: email.toLowerCase(),
         password: password,
       });
       
       if (!data.data.success) {
         setError(true);
+        setLoading(false);
         return;
       }
       
@@ -57,7 +59,7 @@ function Admin({backend}) {
           Not supported on mobile devices...
         </h1>
       ) : access ? (
-        <Dashboard logout={handleLogout} backend={backend} /> // Pass handleLogout to the Dashboard to allow logging out
+        <Dashboard logout={handleLogout} backend={backend} />
       ) : (
         <LoginForm
           email={email}
@@ -67,7 +69,7 @@ function Admin({backend}) {
           setPassword={setPassword}
           setError={setError}
           login={handleLogin}
-          loading={loading} // Show loading spinner while waiting for API response
+          loading={loading}
         />
       )}
     </>

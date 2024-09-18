@@ -20,8 +20,16 @@ function Render({backend}) {
   const {scrollYProgress} = useScroll();
 
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.5], [1, 140, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.17], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.15, 0.18], [1, 1, 1, 0]);
 
+  let initialPosition = [10.964, 5.96, 0.47];
+  let initialRotation = [-1.395, 1.337, 1.402];
+
+  if (window.innerWidth < 456) {
+      initialPosition = [];
+      initialPosition = []; 
+
+  }
   return (
     <>
       <div className="render">
@@ -77,7 +85,7 @@ function Render({backend}) {
               position={[-10, 8, 10]}
               castShadow
             />
-            {/* <OrbitControls /> */}
+
             <Final />
           </Canvas>
         </div>
@@ -86,7 +94,7 @@ function Render({backend}) {
       <div className="gradient"></div>
       <Selection backend={backend}/>
       <Canvas>
-      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={[10.964, 5.96, 0.47]} rotation={[-1.395, 1.337, 1.402]} />
+      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={initialPosition} rotation={initialRotation} />
       <Model />
       </Canvas>
       </div>

@@ -92,7 +92,7 @@
     .catogery {
         position: absolute;
         inset: 0;
-        top: 15%;
+        top: 12%;
         left: 2%;
         z-index: 99;
         padding: 0 2rem;
@@ -101,6 +101,16 @@
         @include media(mobile) {
             left: 5%;
             top: 5%;
+        }
+        h1 {
+            background-color: rgba($color: $primary, $alpha: 0.8);
+            // backdrop-filter: blur(4px);
+            padding: 4px 12px;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 50px;
+            width: fit-content;
         }
     }
 }

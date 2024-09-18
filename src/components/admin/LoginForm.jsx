@@ -45,9 +45,9 @@ function LoginForm({email, password, error, setEmail, setPassword, setError, log
         Please check your credientials properly!!
       </p>
       <a
-        className="submit"
+        className={`${loading ? "submit notAllowed" : "submit"}`}
         align="center"
-        onClick={async () => await login()}
+        onClick={loading ? () => {} : async () => await login()}
       >
         {loading ? "Loading" : "Login"}
       </a>

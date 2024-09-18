@@ -10,7 +10,7 @@ function FilledCard({image, title, to}) {
             <img src={image} alt={title} />
         </div>
      <div className="content">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
       <Link to={to}>
         <button className="btn">
           Explore <IoArrowForwardOutline className='icon'/>
