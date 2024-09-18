@@ -9,9 +9,8 @@ function Admin({backend}) {
 
   const [password, setPassword] = useState("");
 
-  const [access, setAccess] = useState(
-    localStorage.getItem("access") === "true"
-  );
+  const [access, setAccess] = useState(false);
+    // localStorage.getItem("access") === "true"
   const [error, setError] = useState(false);
   const [noDevice, setNoDevice] = useState(false);
 
@@ -37,7 +36,7 @@ function Admin({backend}) {
       
     if (data.data.success) {
       setAccess(true);
-      localStorage.setItem("access", "true"); // Persist login state in localStorage
+      // localStorage.setItem("access", "true"); // Persist login state in localStorage
       setLoading(false);
       return;
     }
@@ -49,7 +48,7 @@ function Admin({backend}) {
 
   const handleLogout = () => {
     setAccess(false);
-    localStorage.removeItem("access"); // Remove access from localStorage on logout
+    // localStorage.removeItem("access"); // Remove access from localStorage on logout
   };
 
   return (
