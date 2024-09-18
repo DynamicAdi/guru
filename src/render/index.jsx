@@ -32,7 +32,7 @@ function Render({backend}) {
   }
   return (
     <>
-      <div className="render">
+      <div className="render" id="home">
         <div className="under">
           <h2>Welcome To</h2>
           <h1>

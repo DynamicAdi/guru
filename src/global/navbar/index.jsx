@@ -8,18 +8,20 @@ import { BiMenuAltRight } from "react-icons/bi";
 // import { Link } from 'react-router-dom';
 
 function Navbar() {
+
+  
   const tabs = [
     {
       name: "Home",
-      to: "/",
+      to: "/#home",
     },
     {
       name: "About",
-      to: "#about",
+      to: "/#about",
     },
     {
       name: "Popular items",
-      to: "#popular",
+      to: "/#popular",
     },
     {
       name: "Menu",
@@ -29,6 +31,17 @@ function Navbar() {
   const [activeTab, setActive] = useState(tabs[0]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [open, setOpen] = useState(false);
+      useEffect(() => {
+      const hash = window.location.hash;
+  
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, [activeTab]);
+  
   const container = {
     hidden: { opacity: 0, y: -50 },
     show: {

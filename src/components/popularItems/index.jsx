@@ -48,7 +48,7 @@ function PopularItems({backend}) {
 
 
   return (
-    <div className="popularItems">
+    <div className="popularItems" id="popular">
       <div className={"upper"}>
         <h2>
           Popular <span>Items</span>

@@ -4,7 +4,7 @@ import plate from "/plate.png";
 
 function About() {
   return (
-    <div className='about' id='#about'>
+    <div className='about' id='about'>
         <h1>About <span>Us</span></h1>
         <div className="middle">
             <div className="content">
