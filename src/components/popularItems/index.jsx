@@ -17,13 +17,12 @@ function PopularItems({backend}) {
     setLoading(true);
     const response = await axios.get(`${backend}/popular`);
     setData(response.data);
-    console.log(data);
-    
     setLoading(false);
   };
 
   useEffect(() => {
     handleFetch();
+    
   }, []);
 
   useEffect(() => {
@@ -53,17 +52,14 @@ function PopularItems({backend}) {
         <h2>
           Popular <span>Items</span>
         </h2>
-        <p>
-          our popular food items accross india
-        </p>
       </div>
       <div className="child">
         <div className="popCards"
-         style={{transform: `translateX(-${currentCard * 80}%)`}}
+         style={{transform: `translateX(-${currentCard * 100}%)`}}
         >
           {loading ? (<Loader />) : (
             data.length > 0 && 
-            data?.
+            data.
             slice(0, 5).map((card, index) => (
               <ColorCard currentCard={currentCard} index={index} key={index} id={card?._id} image={card?.image} name={card?.name} desc={card?.description} isVeg={card?.isVeg} />
             ) 

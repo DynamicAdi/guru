@@ -5,7 +5,8 @@
     height: 25rem;
     padding: 2rem;
     @include flex();
-
+    overflow: hidden !important;
+    scrollbar-width: none;
     @include media(mobile) {
         @include flex(column);
         height: auto;
@@ -16,6 +17,7 @@
         height: 100%;
         background-color: lighten($color: $primary, $amount: 0%);
         border-radius: 20px;
+        overflow: hidden;
         @include flex(space-between);
         padding: 1rem 2rem;
         padding-bottom: 3%;

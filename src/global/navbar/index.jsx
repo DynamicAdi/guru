@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import logo from "/logo.png";
-// import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { BiMenuAltRight } from "react-icons/bi";
-// import { Link } from 'react-router-dom';
+
+
 
 function Navbar() {
 
@@ -66,7 +66,7 @@ function Navbar() {
   };
 
   useEffect(() => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 587) {
       setIsAnimating(true);
     }
   }, [window.innerWidth]);

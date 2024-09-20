@@ -16,17 +16,26 @@ import Selection from "./Selection";
 function Render({backend}) {
   const {scrollYProgress} = useScroll();
 
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.5], [1, 140, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.13, 0.15], [1, 0.8, 0]);
+  let ModelInitialPosition = [10.964, 5.96, 0.47];
+  let ModelInitialRotation = [-1.395, 1.337, 1.402];
 
-  let initialPosition = [10.964, 5.96, 0.47];
-  let initialRotation = [-1.395, 1.337, 1.402];
+  let initialPosition = [-11, 7, 1.9];
+  let initialRotation = [-0.9, -0.94, -0.88];
+  let fov = 22
+  let op = 0.15
 
-  if (window.innerWidth < 456) {
-      initialPosition = [];
-      initialPosition = []; 
-
+  if(window.innerWidth < 589) {
+    initialPosition = [-11, 9, 5];
+    initialRotation = [-0.9, -0.94, -0.88];
+    fov = 28
+    op = 0.09
   }
+  
+
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.25], [1, 130, 0]);
+  let opacity = useTransform(scrollYProgress, [0, op], [1, 0]);
+
+
   return (
     <>
       <div className="render" id="home">
@@ -71,9 +80,9 @@ function Render({backend}) {
               makeDefault={true}
               far={800}
               near={0.1}
-              fov={22}
-              position={[-11, 7, 1.9]}
-              rotation={[-0.9, -0.94, -0.88]}
+              fov={fov}
+              position={initialPosition}
+              rotation={initialRotation}
               scale={1.249}
             />
             <ambientLight intensity={0.5} />
@@ -91,7 +100,7 @@ function Render({backend}) {
       <div className="gradient"></div>
       <Selection backend={backend}/>
       <Canvas>
-      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={initialPosition} rotation={initialRotation} />
+      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={ModelInitialPosition} rotation={ModelInitialRotation} />
       <Model />
       </Canvas>
       </div>
