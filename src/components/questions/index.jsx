@@ -4,8 +4,7 @@ import OpenFaq from './slider';
 import axios from 'axios';
 import SmallLoader from '../../global/loader/SmallLoader';
 
-function FAQ() {
-  const backend = 'http://localhost:8080'
+function FAQ({backend}) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 

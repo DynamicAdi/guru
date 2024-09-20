@@ -4,8 +4,7 @@ import ServeCard from './card';
 import axios from 'axios';
 import SmallLoader from '../../global/loader/SmallLoader';
 
-function Services() {
-  const backend = 'http://localhost:8080';
+function Services({backend}) {
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
