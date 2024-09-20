@@ -1,7 +1,7 @@
 import React from 'react'
 import './loader.scss'
 
-function Loader({height}) {
+function SmallLoader({height}) {
   return (
     <div className="main" style={{height: height || '100vh'}}>
     <span className="loader"></span>
@@ -9,4 +9,4 @@ function Loader({height}) {
   )
 }
 
-export default Loader
+export default SmallLoader

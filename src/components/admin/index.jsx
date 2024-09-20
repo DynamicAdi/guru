@@ -9,8 +9,10 @@ function Admin({backend}) {
 
   const [password, setPassword] = useState("");
 
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState(
     localStorage.getItem("access") === "true"
+  );
+    // localStorage.getItem("access") === "true"
   const [error, setError] = useState(false);
   const [noDevice, setNoDevice] = useState(false);
 

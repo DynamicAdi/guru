@@ -10,6 +10,8 @@ function PosCard({id, image, title, desc, veg}) {
       return null;
     }
     addToArray(id);
+    console.log(myArray);
+    
   }
   const handleRemove = (id) => {
     removeFromArray(id);

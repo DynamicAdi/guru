@@ -28,10 +28,18 @@ function Items() {
           <div className="crdParent">
         {arry.map((item, index) => {
             if (typeof item === "object") {
-               return <DetailsCard key={index} title={item.title} image={item.image} />
+               return (
+               <>
+               <DetailsCard key={index} title={item.name} image={item.image} price={item.price} desc={item.description}/>
+                <div className="bottom">
+                  <h2>{arry.length} items</h2>
+                  <h2>{arry.reduce((sum, item) => sum + item.price, 0)} /-</h2>
+                </div>
+               </>
+               )
             }
             if (typeof item === "string" && item.startsWith("http")) {
-                return <img className="ok" key={index} src={'https://picsum.photos/200'} alt={`Image ${index}`} />
+                return <img className="ok" key={index} src={img} alt={`Image ${index}`} />
             }
             if (typeof item === "string") {
                return <input type="text" value={item} key={index} className="tag" onChange={(e) => setItem(e.target.value)} />

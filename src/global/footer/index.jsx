@@ -33,6 +33,7 @@ function Footer() {
                     <li><MdLocationPin /> Near main street, Ludhiana, India, 1821xx</li>
                 </ul>
             </div>
+            <p className='copyright'>All the copyrights are reserved by The RD Group of Industries</p>
         </div>
 
     </div>

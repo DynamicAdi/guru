@@ -10,7 +10,7 @@ function DetailsCard({id, title, image, desc, price}) {
                         <div className="texts">
                             <h2>{title}</h2>
                             <p>{desc}</p>
-                            {price && <h3>300 /-</h3>}
+                            {price && <h3>{price} /-</h3>}
                         </div>
                         </div>
   )

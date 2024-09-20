@@ -50,11 +50,12 @@
             @include media(mobile, tablet) {
                 width: 100%;
             }
-            .upper {
-                width: 80%;
+            .uperWala {
+                width: 90%;
                 height: 15%;
                 @include flex(flex-start);
                 gap: 3rem;
+                margin-bottom: 5%;
                 @include media(mobile, tablet) {
                     width: 100%;
                     gap: 1rem;
@@ -63,8 +64,8 @@
                     @include flex($fd: column);
                     gap: 0.4rem;
                     .circle {
-                        width: 4rem;
-                    height: 4rem;
+                        width: 3rem;
+                    height: 3rem;
                     border-radius: 50%;
                     border: 1px solid $grey;
                     color: $grey;

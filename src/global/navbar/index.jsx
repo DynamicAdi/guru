@@ -20,6 +20,10 @@ function Navbar() {
       to: "/#about",
     },
     {
+      name: "Services",
+      to: "/#services",
+    },
+    {
       name: "Popular items",
       to: "/#popular",
     },

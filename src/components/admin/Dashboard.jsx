@@ -9,6 +9,7 @@ import {
 import { readData } from "../../funcs/useFetch";
 
 import { FaRegEdit, FaRegTrashAlt, FaSpinner } from "react-icons/fa";
+import {CiCircleList, CiCircleQuestion, CiUser} from "react-icons/ci"
 import axios from "axios";
 import { GoListUnordered } from "react-icons/go";
 import { GiHotMeal } from "react-icons/gi";
@@ -21,6 +22,10 @@ function Dashboard({logout, backend}) {
     { title: "Foods", icon: IoFastFoodOutline },
     { title: "Orders", icon: GoListUnordered },
     { title: "Corporate", icon: GiHotMeal },
+    { title: "Clients", icon: CiUser},
+    { title: "Services", icon: CiCircleList},
+    { title: "Faq", icon: CiCircleQuestion}
+
   ];
   const [activeTab, setActiveTab] = useState(tabs[2].title);
   const { data = [], isLoading, error, reFetch } = readData(backend, activeTab);
@@ -42,7 +47,7 @@ function Dashboard({logout, backend}) {
   const [role, setRole] = useState('admin');
 
   const [image, setImage] = useState("");
-  const [key, setKey] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
 
 
   const [create, setCreate] = useState(false);
@@ -149,7 +154,10 @@ function Dashboard({logout, backend}) {
   const getCatogery = async (action, id) => {
     let url = "";
     let method = "GET";
-
+    if (id==="" || catogery === "" || image === "") {
+      alert("Please fill all the details")
+      return null
+    }
     if (action === "read") {
       (url = `${backend}/catogery`), (method = "GET");
     } else if (action === "create") {
@@ -173,13 +181,17 @@ function Dashboard({logout, backend}) {
         name: catogery,
       },
     };
+    setLoading(true);
     const response = await axios.request(options);
     setCatogeries(response.data);
+    setLoading(false);
   };
 
 
   const handleCreate = async () => {
+
     try {
+      setLoading(true);
       const response = await axios.post(`${backend}/createFood`, {
         name: name,
         description: description,
@@ -191,43 +203,38 @@ function Dashboard({logout, backend}) {
         isPopular: isPopular,
       });
       console.log("Item created:", response.data);
+      setLoading(false);
       setVisible(false);
     } catch (error) {
       console.error("Error creating item:", error);
     }
   };
 
-  async function UploadImage(e) {
-    const files = e.target.files;
-    const file = files[0];
+  const UploadImage = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-    if (file && file.type.startsWith("image/")) {
-      setKey(file);
-    } else {
-      setImage("couldn't upload, please upload image!");
-    }
-  }
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'my_unsigned_preset');
 
-  async function PostImage(string) {
-    let url = `https://api.imgbb.com/1/upload?key=205b43fdaf7fa938b57fa8ab143d8685`;
-    const data = new FormData();
-    data.append("image", string);
     try {
-      const response = await axios.post(url, data);
-      if (response.status !== 200) {
-        console.log("error");
-        return;
-      }
-      console.log(response.data.data.url);
-      setImage(response.data.data.url);
-    } catch {
-      console.log("error");
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/dozknak00/image/upload`,
+        formData,
+        {
+          onUploadProgress: (progressEvent) => {
+            const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setUploadProgress(progress);
+          },
+        }
+      );
+      console.log(response.data.secure_url);
+      setImage(response.data.secure_url);
+    } catch (error) {
+      console.error('Error uploading image:', error);
     }
-  }
-
-  if (key) {
-    PostImage(key);
-  }
+ }; 
 
   const handleStatus = async (id, value) => {
       const requst = await axios.put(`${backend}/status`, {
@@ -239,7 +246,18 @@ function Dashboard({logout, backend}) {
   }
 
   return (
-    <div className="container" style={visible || activeTab==='Foods' || activeTab==='Corporate' ? {marginTop: '0'} : {marginTop: '2%'} }>
+    <>
+    {activeTab === "Clients"|| activeTab==="Faq" || activeTab==="Services" || activeTab=== "Corporate" ? (
+      <div className="upper">
+        <div className="btns">
+        <Link to={'/dashboard/add/form'} state={{ tab: activeTab }}>
+          <button>Add Data</button>
+        </Link>
+        </div>
+      </div>
+      ) : null }
+    <div className="container" style={activeTab==='Admins' || activeTab==='Orders' ? {marginTop: '2%'} : {marginTop: '0%'} }>
+      
       {createCatogery ? (
         <div className="visible userEd create">
           <h1>
@@ -273,9 +291,10 @@ function Dashboard({logout, backend}) {
             <input
               type="text"
               value={catogery}
+              placeholder="Catogery Name"
               onChange={(e) => setCatogery(e.target.value)}
             />
-            <button onClick={() => getCatogery("create")}>Create</button>
+            <button onClick={loading ? () => {} : () => getCatogery("create")}>{loading ? "Loading..." : "Create"}</button>
           </form>
         </div>
       ) : (
@@ -362,7 +381,7 @@ function Dashboard({logout, backend}) {
                       <h3>Image uploaded Successfully!!</h3>
                     ) : (
                       <input
-                        onChange={UploadImage}
+                        onChange={() => UploadImage(e)}
                         style={{ width: "60%", height: "6rem" }}
                         accept="image/*"
                         type="file"
@@ -371,7 +390,8 @@ function Dashboard({logout, backend}) {
                     <img src={image} alt="uploaded" className="uploadedImage" />
                   </div>
                 ) : (
-                  <input onChange={UploadImage} accept="image/*" type="file" />
+                  <input onChange={() => UploadImage(e)}
+                  accept="image/*" type="file" />
                 )}
                 <textarea
                   type="text"
@@ -380,8 +400,8 @@ function Dashboard({logout, backend}) {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                 {create && (
-                  <button style={{ cursor: "pointer" }} onClick={handleCreate}>
-                    Create Data
+                  <button style={loading ? {cursor: 'not-allowed', opacity: 0.5} : {cursor: 'pointer', opacity: 1}} onClick={loading ? () => {} : handleCreate}>
+                    {loading ? "Creating..." : "Create Data"}
                   </button>
                 )}
                 {update && (
@@ -472,20 +492,7 @@ function Dashboard({logout, backend}) {
           </div>
         </div>
       )
-      : activeTab==="Corporate" ? (
-        <div className="add">
-
-          <div className="btns">
-          <Link to="/addCorporate">
-            <button
-              className="btn"
-            >
-              Add Corporate +
-            </button>
-          </Link>
-          </div>
-        </div>
-      ) : (
+      : (
         ""
       )}
       <div className="core">
@@ -520,9 +527,9 @@ function Dashboard({logout, backend}) {
             <div>Error</div>
           ) : data.length > 0 ? (
             <>
-              <div className="content">
+              <div className={`content ${activeTab === "Orders" || activeTab==="Corporate" || activeTab==="Foods" ? "max" : ""}`}>
               <div className="header">
-                <table cellPadding="0" cellSpacing="0" border="0">
+                <table className={`${activeTab === "Orders"||activeTab==="Corporate" ? "maxout" : ""}`} cellPadding="0" cellSpacing="0" border="0">
                   <thead>
                     <tr>
                       {keys.map((key) => (
@@ -548,7 +555,7 @@ function Dashboard({logout, backend}) {
               </div>
 
                 {/* {visible ? create ?  <Create /> : "" : } */}
-                <table cellPadding="0" cellSpacing="0" border="0">
+                <table className={`${activeTab === "Orders"||activeTab==="Corporate" ? "maxout" : ""}`} cellPadding="0" cellSpacing="0" border="0">
                   <tbody>
                     {/* <Suspense fallback={<div>isLoading</div>}>  */}
 
@@ -574,7 +581,7 @@ function Dashboard({logout, backend}) {
                                             (item[key].includes(
                                               "googleusercontent"
                                             ) ||
-                                              item[key].includes("i.ibb.co")) &&
+                                              item[key].includes("res.cloudinary.com")) &&
                                             // item[key].includes("googleusercontent")
                                             item[key].slice(0, 50) ? (
                                               <img
@@ -603,16 +610,17 @@ function Dashboard({logout, backend}) {
                                     </>
                                   );
                                 })}
-                              {activeTab === "Foods" ||
-                              activeTab === "Admins" ||
-                              activeTab === "Corporate" ||
-                              activeTab === "Popular"
+                              {activeTab !== "Orders" 
                               ? (
                                 <div className="empty icons">
                                   {loading ? (
                                     <FaSpinner className="spinner" />
                                   ) : (
                                     <>
+                                    {activeTab==="Clients" || activeTab==="Services" || activeTab==="Faq" ? (<Link to={'/dashboard/edit'} state={{tab: activeTab, id: item._id, image: item.image, name: item.name, question: item.question, answer: item.answer, catogery: item.catogery}}>                                    <FaRegEdit
+                                      className="edit"
+                                      size={18}
+                                   /></Link>) : (
                                     <FaRegEdit
                                       className="edit"
                                       size={18}
@@ -621,7 +629,6 @@ function Dashboard({logout, backend}) {
                                           setVisible(true);
                                           setUpdate(true);
                                           setAdmin(true);
-
                                           update
                                             ? console.log("nalla")
                                             : handleEdit("edit", item._id),
@@ -629,6 +636,7 @@ function Dashboard({logout, backend}) {
                                         }
                                       }}
                                     />
+                                    )}
                                     <FaRegTrashAlt
                                       className="delete"
                                       size={18}
@@ -673,6 +681,7 @@ function Dashboard({logout, backend}) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

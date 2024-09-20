@@ -13,6 +13,9 @@ import ViewAllItems from "./components/corporate/viewAll.jsx";
 import Checkout from "./components/checkout/index.jsx";
 import Items from "./components/admin/Items.jsx";
 import Form from "./components/forms/form.jsx";
+import Client from "./components/forms/Client.jsx";
+import AboutUs from "./components/about/Main.jsx";
+import Edit from "./components/forms/Edit.jsx";
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -57,6 +60,21 @@ createRoot(document.getElementById("root")).render(
             <Route
             path="/dashboard/items"
             element={<Items />}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/dashboard/add/form"
+            element={<Client backend={URL}/>}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/dashboard/edit"
+            element={<Edit backend={URL}/>}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/about-us"
+            element={<AboutUs />}
             errorElement={<ErrorPage />}
           />
           {/* <Route

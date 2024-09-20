@@ -29,7 +29,6 @@ function Corporate({backend}) {
 
   useEffect(() => {
     getFood();
-    console.log(data);
   }, [FoodPrefrence]);
 
   const filterMenuItems = (items) => {
@@ -49,6 +48,16 @@ function Corporate({backend}) {
     <div className="up">
       <h1>Food Bundles</h1>
       <div className="tags">
+      <div className="circleTags">
+        <p>select preference</p>
+        <div className="btns">
+        <button>High</button>
+        <button>Medium</button>
+        <button>Low</button>
+        </div>
+
+      </div>
+       
        <div className="context">
         <p>Food preference</p>
        <select className='tag'

@@ -9,7 +9,6 @@ function Checkout({backend}) {
   const location = useLocation();
   const navigate = useNavigate();
   const { items, prefrence } = location.state || [];
-  // const backend = 'http://localhost:8080';
   const functionTabs = [
     "Wedding",
     "Anniversary",
@@ -18,7 +17,7 @@ function Checkout({backend}) {
     "corporate",
     "others",
   ];
-  const noOfPeoples = ["2-20", "20-50", "50-100", "100-500", "500+", "custom"];
+  const noOfPeoples = ["2-20", "20-50", "50-100", "100-500", "500+"];
   const [foodPrefrence, setPrefrence] = useState(prefrence);
   const [functionDetails, setDetails] = useState({
     functionType: "",
@@ -135,6 +134,7 @@ function Checkout({backend}) {
     }));
   };
 
+  const today = new Date().toISOString().split("T")[0];
   return (
     <div className="main">
       <div className="backme" onClick={() => navigate('/menu')}>Back</div>
@@ -143,7 +143,7 @@ function Checkout({backend}) {
           <img src="https://picsum.photos/1820" alt="alt from" />
         </div>
         <div className="content">
-          <div className="upper">
+          <div className="uperWala">
             <div
               className={`box ${stepForm === 1 ? "active" : ""} ${
                 stepForm === 2 || 3 ? "done" : ""
@@ -289,7 +289,7 @@ function Checkout({backend}) {
                   required
                   placeholder="+91-987654xxxxxx"
                   onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
+                    setFormData({ ...formData, phone: e.target.value.replace(/[^\d]/g, "").slice(0, 10) })
                   }
                 />
 
@@ -297,15 +297,16 @@ function Checkout({backend}) {
                   type="email"
                   name="email"
                   required
-                  placeholder="Hnqg7@example.com"
+                  placeholder="xyz@example.com"
                   onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
+                    setFormData({ ...formData, email: e.target.value.replace(/\s+/g, "")})
                   }
                 />
                 <input
                   type="date"
                   name="date"
                   required
+                  min={today}
                   onChange={(e) =>
                     setFormData({ ...formData, date: e.target.value })
                   }

@@ -171,9 +171,10 @@ function Menu({ backend }) {
             className={`${myArray.length > 0 ? "" : "disabled"} next ${
               active ? "back" : ""
             }`}
-            {...myArray < 0 && { onClick: () => {setActive(!active), {...active ? "" : getMenu()}}}}
+            {...myArray.length > 0 && { onClick: () => {setActive(!active), {...active ? "" : getMenu()}}}}
           >
-            {active ? "Back" : "Next"}
+
+            {loading ? "Loading" : active ? "Back" : "Next"}
           </button>
           {active && 
           <Link to="/checkout" state={{items: nextData, prefrence: FoodPrefrence}}>

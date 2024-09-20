@@ -7,9 +7,6 @@ import { PerspectiveCamera } from "@react-three/drei";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Model } from "../../public/Table";
-import FilledCard from "./../components/menu/filledCard"
-import Slider from "react-slick";
-
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,7 +17,7 @@ function Render({backend}) {
   const {scrollYProgress} = useScroll();
 
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.5], [1, 140, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.15, 0.18], [1, 1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.13, 0.15], [1, 0.8, 0]);
 
   let initialPosition = [10.964, 5.96, 0.47];
   let initialRotation = [-1.395, 1.337, 1.402];
