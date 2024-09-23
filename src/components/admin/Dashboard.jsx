@@ -34,7 +34,6 @@ function Dashboard({ logout, backend }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [price, setPrice] = useState("");
-  const [rating, setRating] = useState("");
   const [isVeg, setIsVeg] = useState();
   const [isPopular, setIsPoupular] = useState();
   const [description, setDescription] = useState("");
@@ -96,8 +95,8 @@ function Dashboard({ logout, backend }) {
   }
 
   useEffect(() => {
-    getStatus();
-  }, [selectedStatus]);
+    activeTab === "Orders" ? getStatus() : setLoading(false);
+  }, [handleStatusChange]);
 
 
   const [create, setCreate] = useState(false);
@@ -134,6 +133,9 @@ function Dashboard({ logout, backend }) {
         url = `${backend}/update`;
         METHOD = "PUT";
       }
+      if (activeTab==="Foods") {
+        getCatogery("read")
+      }
 
       const response = await axios.request({
         method: METHOD,
@@ -147,9 +149,10 @@ function Dashboard({ logout, backend }) {
           data: {
             name: name,
             price: price,
-            rating: rating,
             isVeg: isVeg,
+            isPopular: isPopular,
             image: image,
+            catogery: catogery,
             description: description,
           },
         },
@@ -159,34 +162,38 @@ function Dashboard({ logout, backend }) {
       setEmail(response.data.email);
       setPassword(response.data.password);
       setPrice(response.data.price);
-      setRating(response.data.rating);
       setIsVeg(response.data.isVeg);
+      setIsPoupular(response.data.isPopular);
       setImage(response.data.image);
       setDescription(response.data.description);
       setCatogery(response.data.catogery);
-
       setLoading(false);
       // setVisible(true)
+      if(action==="delete") {reFetch()}
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  const handleUpdate = async (id) => {
+  const handleUpdate = async (id, e) => {
+    e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.put(`${backend}/update`, {
         id: id,
         name: name,
         description: description,
         price: price,
         image: image,
-        rating: rating,
         isVeg: isVeg,
         catogery: catogery,
         isPopular: isPopular,
       });
       console.log("Item updated:", response.data);
       setVisible(false);
+      setUpdate(false);
+      setLoading(false);
+      reFetch();
     } catch (error) {
       console.error("Error updating item:", error);
     }
@@ -266,7 +273,6 @@ function Dashboard({ logout, backend }) {
         description: description,
         price: price,
         image: image,
-        rating: rating,
         isVeg: isVeg,
         catogery: catogery,
         isPopular: isPopular,
@@ -321,7 +327,8 @@ function Dashboard({ logout, backend }) {
       {activeTab === "Clients" ||
       activeTab === "Faq" ||
       activeTab === "Services" ||
-      activeTab === "Corporate" ? (
+      activeTab === "Corporate" 
+      ? (
         <div className="upper">
           <div className="btns">
             <Link to={"/dashboard/add/form"} state={{ tab: activeTab }}>
@@ -329,7 +336,31 @@ function Dashboard({ logout, backend }) {
             </Link>
           </div>
         </div>
-      ) : null}
+      )
+      : 
+      activeTab==="Foods" ? (
+          <div className="upper">
+            <div className="btns">
+              <button
+                className="btn"
+                onClick={() => {
+                  setCreate(true), getCatogery("read");
+                }}
+              >
+                Add Food +
+              </button>
+              <button
+                className="btn catogery"
+                onClick={() => {
+                  setCreateCatogery(true);
+                }}
+              >
+                Add Catogery +
+              </button>
+            </div>
+          </div>
+      ) :
+      null}
       <div
         className="container"
         style={
@@ -533,10 +564,24 @@ function Dashboard({ logout, backend }) {
                   )}
                   {update && (
                     <button
-                      style={{ cursor: "pointer" }}
-                      onClick={() => handleUpdate(id)}
+                      style={
+                        loading || uploadProgress
+                          ? { cursor: "not-allowed", opacity: 0.5 }
+                          : { cursor: "pointer", opacity: 1 }
+                      }
+                      onClick={
+                        loading
+                          ? () => {}
+                          : uploadProgress
+                          ? () => {}
+                          : (e) => handleUpdate(id, e)
+                      }
                     >
-                      Update Data
+                      {loading
+                        ? uploadProgress
+                          ? "Uploading image"
+                          : "Loading..."
+                        : "Update Data"}
                     </button>
                   )}
                 </form>
@@ -551,7 +596,6 @@ function Dashboard({ logout, backend }) {
                       setCreate(false), setUpdate(false), setVisible(false);
                       setName(""),
                         setPrice(""),
-                        setRating(""),
                         setIsVeg(false),
                         setDescription("");
                     }}
@@ -598,30 +642,6 @@ function Dashboard({ logout, backend }) {
               ""
             )}
           </>
-        ) : (
-          ""
-        )}
-        {activeTab === "Foods" ? (
-          <div className="add">
-            <div className="btns">
-              <button
-                className="btn"
-                onClick={() => {
-                  setCreate(true), getCatogery("read");
-                }}
-              >
-                Add Food +
-              </button>
-              <button
-                className="btn catogery"
-                onClick={() => {
-                  setCreateCatogery(true);
-                }}
-              >
-                Add Catogery +
-              </button>
-            </div>
-          </div>
         ) : (
           ""
         )}
