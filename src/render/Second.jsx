@@ -10,12 +10,11 @@ export function Plates(props) {
   const { nodes, materials } = useGLTF('/second.glb')
   return (
     <group {...props} dispose={null}>
-      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={[0.027, 1.541, -0.001]} rotation={[-1.572, 0.014, 1.572]} />
-      <pointLight castShadow intensity={2} decay={2} position={[0, 0.355, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-      <pointLight castShadow intensity={1} decay={2} position={[-0.411, 0.351, -0.814]} rotation={[-Math.PI / 2, 0, 0]} />
-      <pointLight castShadow intensity={1} decay={2} position={[0.628, -0.008, 1.119]} rotation={[-Math.PI / 2, 0, 0]} />
-      <pointLight castShadow intensity={1} decay={2} position={[-0.573, 0.008, 1.071]} rotation={[-Math.PI / 2, 0, 0]} />
-      <pointLight castShadow intensity={1} decay={2} position={[0.429, 0.34, -0.813]} rotation={[-Math.PI / 2, 0, 0]} />
+      <pointLight castShadow intensity={1.5} decay={2} position={[0, 0.355, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+      <pointLight castShadow intensity={0.5} decay={2} position={[-0.411, 0.351, -0.814]} rotation={[-Math.PI / 2, 0, 0]} />
+      <pointLight castShadow intensity={0.5} decay={2} position={[0.628, -0.008, 1.119]} rotation={[-Math.PI / 2, 0, 0]} />
+      <pointLight castShadow intensity={0.5} decay={2} position={[-0.573, 0.008, 1.071]} rotation={[-Math.PI / 2, 0, 0]} />
+      <pointLight castShadow intensity={0.5} decay={2} position={[0.429, 0.34, -0.813]} rotation={[-Math.PI / 2, 0, 0]} />
       <group scale={0.061}>
         <mesh castShadow geometry={nodes.Circle008.geometry} material={materials.Porcelain} />
         <mesh castShadow geometry={nodes.Circle008_1.geometry} material={materials['Material.003']} />
@@ -23,7 +22,7 @@ export function Plates(props) {
         <mesh castShadow geometry={nodes.Circle008_3.geometry} material={materials.Sauce_Bits} />
         <mesh castShadow geometry={nodes.Circle008_4.geometry} material={materials.Lumpia_Material} />
       </group>
-      <mesh receiveShadow geometry={nodes.Plane.geometry} material={materials.plane} position={[0, -0.204, 0]} scale={[1.293, 1.293, 1.558]} />
+      <mesh receiveShadow geometry={nodes.Plane.geometry} material={materials.plane} position={[0, -0.204, 0]} scale={[1.293, 1.4, 1.7]} />
     </group>
   )
 }

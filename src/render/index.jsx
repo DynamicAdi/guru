@@ -19,15 +19,17 @@ function Render({backend}) {
   let ModelInitialPosition = [10.964, 5.96, 0.47];
   let ModelInitialRotation = [-1.395, 1.337, 1.402];
 
-  let initialPosition = [-11, 7, 1.9];
+  let initialPosition = [-11, 7, 2];
   let initialRotation = [-0.9, -0.94, -0.88];
-  let fov = 22
+  let fov = 25
+  let secFov = 46
   let op = 0.15
 
   if(window.innerWidth < 589) {
     initialPosition = [-11, 9, 5];
     initialRotation = [-0.9, -0.94, -0.88];
     fov = 28
+    secFov = 60
     op = 0.09
   }
   
@@ -102,6 +104,7 @@ function Render({backend}) {
       <Canvas 
       shadows
       >
+      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={secFov} position={[0.027, 1.541, -0.001]} rotation={[-1.572, 0.014, 1.572]} />
       {/* <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={ModelInitialPosition} rotation={ModelInitialRotation} />
       {/* <Model /> */}
       <Plates />

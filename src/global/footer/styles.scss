@@ -20,11 +20,13 @@
         overflow: hidden;
         @include flex(space-between);
         padding: 1rem 2rem;
-        padding-bottom: 3%;
+        padding-bottom: 3.5%;
         .copyright {
             color: white;
             @extend .font-mon;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            text-align: center;
+            width: 100%;
         }
         @include media(mobile) {
             padding: 1rem;

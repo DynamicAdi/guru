@@ -1,7 +1,7 @@
 @import "../sass/global";
 
 .render {
-    @include fullScreen($h: 90vh);
+    @include fullScreen($h: 100vh);
     @include flex(space-between, flex-start);
     position: relative;
 

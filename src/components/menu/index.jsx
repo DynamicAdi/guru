@@ -84,7 +84,7 @@ function Menu({ backend }) {
     <div className="menuMain">
       <Navbar />
       <div className="up">
-        <h1>{active ? "Your menu items" : "Our Delicious Menu"}</h1>
+        <h1>{active ? "Your Selected menu" : "Our Delicious Menu"}</h1>
         {active ? (
           <></>
         ) : (

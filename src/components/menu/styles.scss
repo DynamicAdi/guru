@@ -17,7 +17,7 @@ position: relative;
       @extend .font-mon-semi;
     }
     .tags {
-      width: 20%;
+      width: auto;
       height: 100%;
       @include flex(flex-start, flex-start, row);
       gap: 3%;
