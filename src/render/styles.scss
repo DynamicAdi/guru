@@ -87,7 +87,7 @@
 
 .area {
     @include fullScreen();
-    background: linear-gradient(to top, #8f8f8f 0%, transparent 100%);
+    // background: linear-gradient(to top, #8f8f8f 0%, transparent 100%);
     position: relative;
     .gradient {
         position: absolute;

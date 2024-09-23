@@ -6,11 +6,11 @@ import { Final } from "./Final";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Plates } from "/Second.jsx";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Selection from "./Selection";
+import { Plates } from "./Second";
 
 
 function Render({backend}) {
