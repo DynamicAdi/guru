@@ -7,6 +7,7 @@ import React, { useEffect } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, PerspectiveCamera, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
+import { useScroll } from 'framer-motion'
 
 export function Final(props) {
   const group = React.useRef()
@@ -14,14 +15,12 @@ export function Final(props) {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
+  const { scrollYProgress} = useScroll();
+
 
   useEffect(() => {
-   actions['actionCook'].play()
-   actions['Wolf3D_Avatar'].play()
-   actions['mixamo.com.001'].play()
-   
-    
-  }, [])
+       actions['mixamo.com.001'].play() 
+  }, [scrollYProgress])
 
   return (
     <group ref={group} {...props} dispose={null}>

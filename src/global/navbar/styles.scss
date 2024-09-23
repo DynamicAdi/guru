@@ -4,7 +4,7 @@
     @include flex(space-between);
     padding: 0.5rem 4rem;
     width: 100%;
-    position: sticky;
+    position: fixed;
     top: 0;
     backdrop-filter: blur(5px);
     background-color: rgba($color: white, $alpha: 0.2);

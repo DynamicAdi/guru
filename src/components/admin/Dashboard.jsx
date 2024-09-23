@@ -538,6 +538,7 @@ function Dashboard({ logout, backend }) {
                     placeholder="Description"
                     value={description}
                     required
+                    maxLength={100}
                     onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
                   {create && (
