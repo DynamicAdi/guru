@@ -16,6 +16,7 @@ import Form from "./components/forms/form.jsx";
 import Client from "./components/forms/Client.jsx";
 import AboutUs from "./components/about/Main.jsx";
 import Edit from "./components/forms/Edit.jsx";
+import History from "./components/history/page.jsx";
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -60,6 +61,11 @@ createRoot(document.getElementById("root")).render(
             <Route
             path="/dashboard/items"
             element={<Items />}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/dashboard/history"
+            element={<History />}
             errorElement={<ErrorPage />}
           />
           <Route

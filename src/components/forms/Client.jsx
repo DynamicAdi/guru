@@ -60,41 +60,6 @@ function Client({backend}) {
           }
        };     
 
-// const CldImage = (image) => {
-//   const cld = new Cloudinary({ cloud: { cloudName: 'dozknak00' } });
-  
-//   // Use this sample image or upload your own via the Media Explorer
-//   const img = cld
-//         .image('image')
-//         .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
-//         .quality('auto')
-//         .resize(auto().gravity(autoGravity()).width(500).height(500)); // Transform the image: auto-crop to square aspect_ratio
-
-//   return (<AdvancedImage cldImg={img}/>);
-// };
-
-
-//       async function PostImage(string) {
-//         let url = `https://api.imgbb.com/1/upload?key=205b43fdaf7fa938b57fa8ab143d8685`;
-//         const data = new FormData();
-//         data.append("image", string);
-//         try {
-//           const response = await axios.post(url, data);
-//           if (response.status !== 200) {
-//             console.log("error");
-//             return;
-//           }
-//           console.log(response.data.data.url);
-//           setImage(response.data.data.url);
-//         } catch {
-//           console.log("error");
-//         }
-//       }
-    
-//       if (key) {
-//         PostImage(key);
-//       }
-
     const uploadFaq = async () => {
         try {
           setLoading(true);
@@ -104,7 +69,7 @@ function Client({backend}) {
             catogery: catogery,
           });
           console.log(response);
-          if (response.statusText === 'OK') {
+          if (response.status === 200) {
               setLoading(false);
             window.history.back();
           }
@@ -121,7 +86,7 @@ function Client({backend}) {
             image: imageUrl
           });
           console.log(response);
-          if (response.statusText === 'OK') {
+          if (response.status === 200) {
               setLoading(false);
             window.history.back();
           }
@@ -138,7 +103,7 @@ function Client({backend}) {
             image: imageUrl
           });
           console.log(response);
-          if (response.statusText === 'OK') {
+          if (response.status === 200) {
               setLoading(false);
             window.history.back();
           }

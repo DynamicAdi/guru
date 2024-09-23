@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
-import logo from "../../assets/ipl.jpg";
-import amazon from "../../assets/amazon.jpg";
-import oracel from "../../assets/oracel.jpg";
-import francis from "../../assets/little.jpg";
-import last from "../../assets/last.jpg";
 import Slider from "react-slick";
 import axios from 'axios';
 import SmallLoader from "../../global/loader/SmallLoader";
@@ -22,28 +17,6 @@ function Brands({backend}) {
       setLoading(false)
     }
   };
-  const tabs = [
-    {
-      image: logo,
-      name: "ipl",
-    },
-    {
-      image: amazon,
-      name: "ipl",
-    },
-    {
-      image: oracel,
-      name: "ipl",
-    },
-    {
-      image: francis,
-      name: "ipl",
-    },
-    {
-      image: last,
-      name: "ipl",
-    },
-  ];
 
   const settings = {
     dots: false,
