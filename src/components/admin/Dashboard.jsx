@@ -69,18 +69,16 @@ function Dashboard({ logout, backend }) {
     }));
 
     setSelectedStatus(newStatus);
-    const url = "http://localhost:8080"
-    await axios.put(`${url}/status`, {
+    await axios.put(`${backend}/status`, {
       id: id,
       status: newStatus,
     });
   };
 
   const getStatus = async () => {
-    const url = "http://localhost:8080"
     try {
       setLoading(true);
-      const response = await axios.get(`${url}/getStatus`);
+      const response = await axios.get(`${backend}/getStatus`);
       // setSelectedStatus(response.data);
       const data = response.data;
       setStatus(data);

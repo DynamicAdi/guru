@@ -65,7 +65,7 @@ createRoot(document.getElementById("root")).render(
           />
           <Route
             path="/dashboard/history"
-            element={<History />}
+            element={<History backend={URL}/>}
             errorElement={<ErrorPage />}
           />
           <Route

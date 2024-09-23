@@ -7,7 +7,6 @@ import SmallLoader from '../../global/loader/SmallLoader';
 function History({backend}) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([])
-    const url = "http://localhost:8080"
     const location = useLocation()
     const {id} = location.state || ""
 
@@ -15,7 +14,7 @@ function History({backend}) {
         try {
 
             setLoading(true)
-            const response = await axios.get(`${url}/statusHistory/${id}`)
+            const response = await axios.get(`${backend}/statusHistory/${id}`)
             if (response.status === 200) {
                 setData(response.data);
                 console.log(response.data);
