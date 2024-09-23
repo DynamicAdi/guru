@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import "./styles.scss";
 import ColorCard from "./card";
-import Loader from "../../global/loader/loader";
+import SmallLoader from "../../global/loader/loader";
 
 function PopularItems({backend}) {
   // console.log(backend);
@@ -57,7 +57,7 @@ function PopularItems({backend}) {
         <div className="popCards"
          style={{transform: `translateX(-${currentCard * 100}%)`}}
         >
-          {loading ? (<Loader />) : (
+          {loading ? (<SmallLoader />) : (
             data.length > 0 && 
             data.
             slice(0, 5).map((card, index) => (

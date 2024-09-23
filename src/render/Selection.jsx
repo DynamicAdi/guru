@@ -4,15 +4,18 @@ import "./styles.scss";
 import axios from 'axios';
 import Slider from 'react-slick';
 import FilledCard from '../components/menu/filledCard';
+import SmallLoader from '../global/loader/SmallLoader';
 
 function Selection({backend}) {
     const [categories, setCategories] = useState([]);
-
+    const [loading, setLoading] = useState(false);
     const getCategories = async () => {
       try {
+        setLoading(true)
         const response = await axios.get(`${backend}/catogery`);
         if (response.status === 200) {
           setCategories(response.data);
+        setLoading(true)
         } else {
           console.error("Failed to fetch categories");
         }
@@ -71,11 +74,13 @@ function Selection({backend}) {
     transition={{duration: 0.6, delay: 1.5}}
 className="catogery">
   <h1><span>categories</span></h1>
+  {loading ? <SmallLoader /> : categories.length === 0 ? <p>No categories found</p> : 
     <Slider {...settings} arrows={false}>
       {categories.map((category, index) => (
         <FilledCard key={index} to={`/menu/${category.name}`} image={category.image} title={category.name} />
       ))}
     </Slider>
+    }
     </motion.div>
   )
 }
