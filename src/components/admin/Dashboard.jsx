@@ -223,7 +223,7 @@ function Dashboard({ logout, backend }) {
       setVisible(false);
       setCreateCatogery(false);
       alert(catogery + ": created successfully");
-      window.location.reload();
+      reFetch();
     } catch (error) {
       console.error("Error updating item:", error);
     }
@@ -281,6 +281,7 @@ function Dashboard({ logout, backend }) {
       setLoading(false);
       setVisible(false);
       setCreate(false);
+      reFetch();
     } catch (error) {
       console.error("Error creating item:", error);
     }
