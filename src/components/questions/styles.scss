@@ -2,7 +2,9 @@
 
 .container {
     @include fullScreen($h: auto);
-    padding: 2rem 2rem 0px;
+    padding: 1rem 2rem 0px;
+    overflow: hidden;
+    // background: #000;
     @include media(mobile) {
         padding: 1rem;
     }

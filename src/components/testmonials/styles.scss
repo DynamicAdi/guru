@@ -1,10 +1,9 @@
 @import "../../sass/global";
 
 .testmonials {
-    @include fullScreen($h: 60vh);
-
+    @include fullScreen($h: 80vh);
     @include media(mobile) {
-        height: auto;
+        height: 80vh;
         padding: 1rem;  
     }
     h1 {

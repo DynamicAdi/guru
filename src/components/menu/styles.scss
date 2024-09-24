@@ -1,6 +1,7 @@
 @import "../../sass/global";
 
 .menuMain {
+  margin-top: 6%;
   @include fullScreen($h: auto);
 position: relative;
   .up {
@@ -17,7 +18,8 @@ position: relative;
       @extend .font-mon-semi;
     }
     .tags {
-      width: auto;
+      width: 23%;
+      // background: #000;
       height: 100%;
       @include flex(flex-start, flex-start, row);
       gap: 3%;
@@ -59,7 +61,7 @@ position: relative;
     background-color: white;
     box-shadow: 0 -20px 60px -15px rgba(40, 44, 63, .15);
     @include flex(space-between, center, row);
-    padding: 0px 2rem;
+    padding: 0px 7rem;
 
     @include media(mobile) {
       height: 6rem;

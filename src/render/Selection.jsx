@@ -15,7 +15,7 @@ function Selection({backend}) {
         const response = await axios.get(`${backend}/catogery`);
         if (response.status === 200) {
           setCategories(response.data);
-        setLoading(true)
+        setLoading(false)
         } else {
           console.error("Failed to fetch categories");
         }

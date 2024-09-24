@@ -53,14 +53,14 @@
             z-index: 2;
             top: -25%;
             left: 5%;
-            @include flex(flex-start, flex-start);
+            // @include flex(flex-start, flex-start);
             gap: 1.9rem;
             transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             @include media(mobile) {
-                @include flex(center, center, column);
+                // @include flex(center, center, column);
                 width: 90%;
-                top: -60%;
-                left: 10%;
+                // top: -60%;
+                left: 18%;
                 gap: 2rem;
 
             }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./styles.scss";
 import ColorCard from "./card";
 import SmallLoader from "../../global/loader/loader";
+import Slider from "react-slick";
 
 function PopularItems({backend}) {
   // console.log(backend);
@@ -25,26 +26,44 @@ function PopularItems({backend}) {
     
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const interval = setInterval(() => {
-      setCurrentCard((prev) => (prev + 1) % data.length);
-    }, 2000); // 2 seconds interval
-
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
+    autoplay: true,
+    speed: 2400,
+    pauseOnHover: true,
+    autoplaySpeed: 2400,
+    lazyLoad: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  }
 
   return (
     <div className="popularItems" id="popular">
@@ -55,8 +74,8 @@ function PopularItems({backend}) {
       </div>
       <div className="child">
         <div className="popCards"
-         style={{transform: `translateX(-${currentCard * 100}%)`}}
         >
+          <Slider arrows={false} {...settings}>
           {loading ? (<SmallLoader />) : (
             data.length > 0 && 
             data.
@@ -64,7 +83,7 @@ function PopularItems({backend}) {
               <ColorCard currentCard={currentCard} index={index} key={index} id={card?._id} image={card?.image} name={card?.name} desc={card?.description} isVeg={card?.isVeg} />
             ) 
           ))}
-
+          </Slider>
         </div>
       </div>
     </div>
