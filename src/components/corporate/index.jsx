@@ -3,10 +3,9 @@ import Navbar from '../../global/navbar'
 import './styles.scss';
 import CorporateCard from './card';
 import axios from 'axios';
-import Loader from '../../global/loader/loader';
+import SmallLoader from '../../global/loader/SmallLoader';
 
 function Corporate({backend}) {
-  // const backend = 'http://localhost:8080'
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false)
   const [FoodPrefrence, setFoodPrefrence] = useState('');
@@ -72,7 +71,7 @@ function Corporate({backend}) {
     </div>
     </div>
       <div className="middle">
-      {loading ? (<Loader height={'80vh'} />) : (data && data.map((item) =>    
+      {loading ? (<SmallLoader />) : (data && data.map((item) =>    
       <CorporateCard key={item._id} 
       id={item._id}
       title={item.title}

@@ -10,7 +10,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Selection from "./Selection";
-import { Plates } from "./Second";
+import { Model } from "./Blow";
 
 
 function Render({backend}) {
@@ -22,14 +22,14 @@ function Render({backend}) {
   let initialPosition = [-11, 7, 2];
   let initialRotation = [-0.9, -0.94, -0.88];
   let fov = 25
-  let secFov = 46
+  let secFov =22.895
   let op = 0.15
 
   if(window.innerWidth < 589) {
     initialPosition = [-11, 9, 5];
     initialRotation = [-0.9, -0.94, -0.88];
     fov = 28
-    secFov = 60
+    secFov = 30
     op = 0.09
   }
   
@@ -99,15 +99,13 @@ function Render({backend}) {
         </div>
       </div>
       <div className="area">
-      <div className="gradient"></div>
+      {/* <div className="gradient"></div> */}
       <Selection backend={backend}/>
       <Canvas 
       shadows
       >
-      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={secFov} position={[0.027, 1.541, -0.001]} rotation={[-1.572, 0.014, 1.572]} />
-      {/* <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={45.747} position={ModelInitialPosition} rotation={ModelInitialRotation} />
-      {/* <Model /> */}
-      <Plates />
+      <PerspectiveCamera makeDefault={true} far={1000} near={0.1} fov={secFov} position={[0, 4.888, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+      <Model/>
       </Canvas>
       </div>
     </>

@@ -8,10 +8,9 @@ import Slider from 'react-slick';
 import DetailsCard from './DetailsCard';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Loader from '../../global/loader/loader';
+import SmallLoader from '../../global/loader/SmallLoader';
 
 function ViewAllItems({backend}) {
-  // const backend = 'http://localhost:8080'
   const location = useLocation();
     const {id} = location.state;
 
@@ -87,7 +86,7 @@ function ViewAllItems({backend}) {
         ]
       };
   return (
-    isLoading ? (<Loader />) :
+    isLoading ? (<SmallLoader />) :
     <div className='container'>
         <Navbar />
         {data && data.map((item) => (

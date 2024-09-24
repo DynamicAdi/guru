@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../global/navbar";
 import "./styles.scss";
-import FilledCard from "./filledCard";
 import { useArray } from "../../funcs/context";
 import PosCard from "./pos-card";
 import axios from "axios";
 import DetailsCard from "../corporate/DetailsCard";
-import Loader from "../../global/loader/loader";
 import {Link, useParams} from 'react-router-dom'
+import SmallLoader from "../../global/loader/SmallLoader";
 
 function Menu({ backend }) {
   const { myArray } = useArray();
@@ -122,7 +121,7 @@ function Menu({ backend }) {
         {active ? (
           <div className={`child`}>
             {loading ? (
-              <Loader height={'60vh'} />
+              <SmallLoader />
             ): (<>
             {nextData.length > 0 ? (
               nextData.map((item, index) => (
@@ -143,7 +142,7 @@ function Menu({ backend }) {
         ) : (
           <div className="child nextScreen">
             {loading ? (
-              <Loader height={'60vh'} />
+              <SmallLoader />
             ): (<>
             {menuItems.length > 0 ? (
               menuItems.map((item, index) => (

@@ -2,7 +2,7 @@
 
 .CorporateMain {
   @include fullScreen();
-
+  margin-top: 6%;
   h1 {
     @extend .font-mon-extraBold;
     font-size: 2.5rem;

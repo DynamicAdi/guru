@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import "./styles.scss";
 import ColorCard from "./card";
-import SmallLoader from "../../global/loader/loader";
 import Slider from "react-slick";
+import SmallLoader from "../../global/loader/SmallLoader";
 
 function PopularItems({backend}) {
   // console.log(backend);
@@ -23,7 +23,6 @@ function PopularItems({backend}) {
 
   useEffect(() => {
     handleFetch();
-    
   }, []);
 
   const settings = {
@@ -33,9 +32,9 @@ function PopularItems({backend}) {
     slidesToScroll: 5,
     initialSlide: 0,
     autoplay: true,
-    speed: 2400,
+    speed: 3000,
     pauseOnHover: true,
-    autoplaySpeed: 2400,
+    autoplaySpeed: 3000,
     lazyLoad: true,
     responsive: [
       {
